@@ -17,12 +17,13 @@ router.post("/users_add", async (req,res, next)=>{
     }
 });
 
-router.get("/hi",(req,res, next)=>{
+router.get("/",(req,res, next)=>{
 
     try{
-        res.json({
-            data : 'hi'
-        });
+        // res.json({
+        //     data : 'hi'
+        // });
+        res.send('hello world');
 
     }catch(e){
         console.log(e)
