@@ -17,7 +17,7 @@ router.post("/users_add", async (req,res, next)=>{
     }
 });
 
-router.get("",(req,res, next)=>{
+router.get("/hi",(req,res, next)=>{
 
     try{
         res.json({
