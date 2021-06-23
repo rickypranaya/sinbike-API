@@ -1,0 +1,8 @@
+#testing POST
+
+GET http://localhost:5000/
+Content-Type: application/json
+
+{
+    "name" :"whatsuppp"
+}
