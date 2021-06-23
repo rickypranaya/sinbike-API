@@ -23,7 +23,7 @@ router.get("/",(req,res, next)=>{
         // res.json({
         //     data : 'hi'
         // });
-        res.send('hello world');
+        res.send('this is main world');
 
     }catch(e){
         console.log(e)
