@@ -31,7 +31,7 @@ router.get("/",(req,res, next)=>{
     }
 });
 
-router.get("/login", async (req,res, next)=>{
+router.get("/this is tix-2", async (req,res, next)=>{
     const params = req.body;
 
     try{
