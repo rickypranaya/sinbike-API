@@ -31,6 +31,7 @@ router.get("/",(req,res, next)=>{
     }
 });
 
+
 router.get("/tix-3",(req,res, next)=>{
     const params = req.body;
 
@@ -39,11 +40,20 @@ router.get("/tix-3",(req,res, next)=>{
          res.json({
              data : 'tix-3'
          });
+router.get("/this is tix-2", async (req,res, next)=>{
+    const params = req.body;
+
+    try{
+       // let results = await db.users_add(params);
+        res.json({
+            data : "hello"
+        });
 
     }catch(e){
         console.log(e)
         res.sendStatus(500);
     }
 });
+
 
 module.exports = router;
