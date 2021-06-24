@@ -31,5 +31,19 @@ router.get("/",(req,res, next)=>{
     }
 });
 
+router.get("/tix-3",(req,res, next)=>{
+    const params = req.body;
+
+    try{
+        // let results = await db.users_add(params);
+         res.json({
+             data : 'tix-3'
+         });
+
+    }catch(e){
+        console.log(e)
+        res.sendStatus(500);
+    }
+});
 
 module.exports = router;
