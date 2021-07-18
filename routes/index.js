@@ -1,6 +1,5 @@
 const express = require("express");
 const exphbs = require("express-handlebars");
-const bodyParser = require("boby-parser");
 const db = require("../db")
 const router = express.Router();
 
@@ -19,6 +18,7 @@ router.post("/users_add", async (req,res, next)=>{
         res.sendStatus(500);
     }
 });
+
 
 router.get("/",(req,res, next)=>{
 
