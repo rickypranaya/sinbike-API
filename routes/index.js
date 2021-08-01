@@ -1,6 +1,8 @@
 const express = require("express");
+const exphbs = require("express-handlebars");
 const db = require("../db")
 const router = express.Router();
+
 
 router.post("/users_add", async (req,res, next)=>{
     const params = req.body;
@@ -17,6 +19,7 @@ router.post("/users_add", async (req,res, next)=>{
     }
 });
 
+
 router.get("/",(req,res, next)=>{
 
     try{
@@ -30,5 +33,6 @@ router.get("/",(req,res, next)=>{
         res.sendStatus(500);
     }
 });
+
 
 module.exports = router;
