@@ -21,13 +21,13 @@ router.post("/users_add", async (req,res, next)=>{
 
 router.post("/login", async (req,res, next)=>{
     const params = req.body;
-
+    let results;
 
     try{
         if ( !isNaN(params.username)){
-            let results = await db.login_phone(params);
+            results = await db.login_phone(params);
         } else {
-            let results = await db.login_email(params);
+            results = await db.login_email(params);
         }
 
         if (!results.length){
