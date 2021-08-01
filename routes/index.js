@@ -28,7 +28,8 @@ router.post("/login", async (req,res, next)=>{
         if (!results.length){
             res.json({
                 status : 400,
-                message : 'user is not found'
+                message : 'user is not found',
+                data : results,
             });
         } else {
 
