@@ -43,8 +43,8 @@ sinbikedb.users_one = (id)=>{
 
 sinbikedb.users_add = (params)=>{
     return new Promise((resolve,reject)=>{
-        let sql = "INSERT INTO `users` (`first_name`, `last_name`, `email`, `phone`, `password`) VALUES (?)"
-        pool.query(sql,[[params.first_name, params.last_name, params.email, params.phone, params.password]], (err,results)=>{
+        let sql = "INSERT INTO `users` (`first_name`, `last_name`, `email`, `phone`, `password`, 'created_at') VALUES (?)"
+        pool.query(sql,[[params.first_name, params.last_name, params.email, params.phone, params.password, new Date()]], (err,results)=>{
             if (err){
                 return reject (err);
                 console.log('error')
