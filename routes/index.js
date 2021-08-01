@@ -46,7 +46,7 @@ router.get("/",(req,res, next)=>{
         // res.json({
         //     data : 'hi'
         // });
-        res.send('hesup rld!');
+        res.send('hesuerp rld!');
 
     }catch(e){
         console.log(e)
