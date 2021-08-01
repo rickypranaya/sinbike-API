@@ -1,5 +1,8 @@
 const mysql = require('mysql');
 
+var today = new Date();
+var now = today.toISOString().slice(0, 19).replace('T', ' ');
+
 // const pool = mysql.createPool({
 //     connectionLimit : 10,
 //     host: 'localhost',
@@ -44,7 +47,7 @@ sinbikedb.users_one = (id)=>{
 sinbikedb.users_add = (params)=>{
     return new Promise((resolve,reject)=>{
         let sql = "INSERT INTO `users` (`first_name`, `last_name`, `email`, `phone`, `password`, 'created_at') VALUES (?)"
-        pool.query(sql,[[params.first_name, params.last_name, params.email, params.phone, params.password, new Date()]], (err,results)=>{
+        pool.query(sql,[[params.first_name, params.last_name, params.email, params.phone, params.password, now]], (err,results)=>{
             if (err){
                 return reject (err);
                 console.log('error')
