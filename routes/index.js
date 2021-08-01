@@ -19,6 +19,21 @@ router.post("/users_add", async (req,res, next)=>{
     }
 });
 
+router.post("/login", async (req,res, next)=>{
+    const params = req.body;
+
+    try{
+        let results = await db.login(params);
+        res.json({
+            data : results
+        });
+
+    }catch(e){
+        console.log(e)
+        res.sendStatus(500);
+    }
+});
+
 
 router.get("/",(req,res, next)=>{
 
