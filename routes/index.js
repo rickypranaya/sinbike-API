@@ -23,7 +23,7 @@ router.post("/login", async (req,res, next)=>{
     const params = req.body;
 
     try{
-        let results = await db.login(params);
+        let results = await db.login_phone(params);
         res.json({
             data : results
         });

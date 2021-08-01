@@ -58,7 +58,7 @@ sinbikedb.users_add = (params)=>{
 
 sinbikedb.login_phone = ()=>{
     return new Promise((resolve,reject)=>{
-        pool.query('SELECT * FROM users where phone = ? and password = ?', [phone, password],(err,results)=>{
+        pool.query('SELECT * FROM users where phone = ? and password = ?', [params.username, params.password],(err,results)=>{
             if (err){
                 return reject (err);
             } 
