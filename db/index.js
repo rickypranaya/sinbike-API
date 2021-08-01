@@ -67,4 +67,15 @@ sinbikedb.login_phone = (params)=>{
     })
 };
 
+sinbikedb.login_email = (params)=>{
+    return new Promise((resolve,reject)=>{
+        pool.query('SELECT * FROM users where email = ? and password = ?', [params.username, params.password],(err,results)=>{
+            if (err){
+                return reject (err);
+            } 
+            return resolve (results);
+        })
+    })
+};
+
 module.exports = sinbikedb;

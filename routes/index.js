@@ -22,14 +22,18 @@ router.post("/users_add", async (req,res, next)=>{
 router.post("/login", async (req,res, next)=>{
     const params = req.body;
 
+
     try{
-        let results = await db.login_phone(params);
+        if ( !isNaN(params.username)){
+            let results = await db.login_phone(params);
+        } else {
+            let results = await db.login_email(params);
+        }
 
         if (!results.length){
             res.json({
                 status : 400,
                 message : 'user is not found',
-                data : params,
             });
         } else {
 
