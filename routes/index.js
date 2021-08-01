@@ -24,18 +24,24 @@ router.post("/login", async (req,res, next)=>{
 
     try{
         let results = await db.login_phone(params);
-        res.json({
-            status : 200,
-            data : results,
-            message : 'login success'
-        });
 
+        if (!results.length){
+            res.json({
+                status : 400,
+                message : 'user is not found'
+            });
+        } else {
+
+            res.json({
+                status : 200,
+                data : results,
+                message : 'login success'
+            });
+        }
+        
     }catch(e){
         console.log(e)
-        res.json({
-            status : 400,
-            message : 'error login'
-        });
+        res.sendStatus(500);
     }
 });
 
