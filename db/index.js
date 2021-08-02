@@ -60,6 +60,21 @@ sinbikedb.users_add = (params)=>{
     })
 };
 
+sinbikedb.reserve = (params)=>{
+    return new Promise((resolve,reject)=>{
+        let sql = "INSERT INTO `reserve` (`user_id`, `bike_id`, `created_at`) VALUES (?)"
+        pool.query(sql,[[params.user_id, params.bike_id, params.created_at]], (err,results)=>{
+            if (err){
+                return reject (err);
+                console.log('error')
+
+            } 
+            console.log('user inserted')
+            return resolve ('inserted successfuly');
+        })
+    })
+};
+
 sinbikedb.login_phone = (params)=>{
     return new Promise((resolve,reject)=>{
         pool.query('SELECT * FROM users where phone = ? and password = ?', [params.username, params.password],(err,results)=>{
