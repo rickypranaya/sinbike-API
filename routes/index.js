@@ -129,6 +129,32 @@ router.post("/get_reserve", async (req,res, next)=>{
     }
 });
 
+router.post("/bike_one", async (req,res, next)=>{
+    const params = req.body;
+
+    try{
+        results = await db.bike_one(params);
+
+        if (!results.length){
+            res.json({
+                status : 400,
+                message : 'bike is not found',
+            });
+        } else {
+
+            res.json({
+                status : 200,
+                data : results,
+                message : 'bike retrieve success'
+            });
+        }
+        
+    }catch(e){
+        console.log(e)
+        res.sendStatus(500);
+    }
+});
+
 
 router.get("/",(req,res, next)=>{
 

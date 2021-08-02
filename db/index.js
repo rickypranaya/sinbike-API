@@ -118,4 +118,16 @@ sinbikedb.get_reserve = (params)=>{
         })
     })
 };
+
+sinbikedb.bike_one = (params)=>{
+    return new Promise((resolve,reject)=>{
+        pool.query('SELECT * FROM bikes where id = ?', [params.bike_id] ,(err,results)=>{
+            if (err){
+                return reject (err);
+            } 
+            return resolve (results);
+        })
+    })
+};
+
 module.exports = sinbikedb;
