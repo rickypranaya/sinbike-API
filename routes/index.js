@@ -50,6 +50,31 @@ router.post("/login", async (req,res, next)=>{
     }
 });
 
+router.post("/bike", async (req,res, next)=>{
+
+    try{
+        results = await db.bikes();
+
+        if (!results.length){
+            res.json({
+                status : 400,
+                message : 'bike is not found',
+            });
+        } else {
+
+            res.json({
+                status : 200,
+                data : results,
+                message : 'bike retrieve success'
+            });
+        }
+        
+    }catch(e){
+        console.log(e)
+        res.sendStatus(500);
+    }
+});
+
 
 router.get("/",(req,res, next)=>{
 

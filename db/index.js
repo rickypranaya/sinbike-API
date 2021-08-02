@@ -82,4 +82,15 @@ sinbikedb.login_email = (params)=>{
     })
 };
 
+sinbikedb.bikes = ()=>{
+    return new Promise((resolve,reject)=>{
+        pool.query('SELECT * FROM bikes', (err,results)=>{
+            if (err){
+                return reject (err);
+            } 
+            return resolve (results);
+        })
+    })
+};
+
 module.exports = sinbikedb;
