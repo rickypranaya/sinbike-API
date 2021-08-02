@@ -159,7 +159,7 @@ router.post("/reserve_one", async (req,res, next)=>{
     const params = req.body;
 
     try{
-        results = await db.bike_one(params);
+        results = await db.reserve_one(params);
 
         if (!results.length){
             res.json({
