@@ -132,7 +132,7 @@ sinbikedb.bike_one = (params)=>{
 
 sinbikedb.reserve_one = (params)=>{
     return new Promise((resolve,reject)=>{
-        pool.query('SELECT * FROM bikes where id = ?', [params.reserve_id] ,(err,results)=>{
+        pool.query('SELECT * FROM reserve where id = ?', [params.reserve_id] ,(err,results)=>{
             if (err){
                 return reject (err);
             } 
