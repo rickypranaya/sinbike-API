@@ -23,11 +23,24 @@ router.post("/reserve", async (req,res, next)=>{
     const params = req.body;
 
     try{
-        let results = await db.reserve(params);
-        res.json({
-            data : results
-        });
-
+        let check = await db.get_reserve(params);
+        
+        if  (!check.length){
+            let results = await db.reserve(params);
+            res.json({
+                status: 200,
+                message: 'success',
+                data : results
+            });
+    
+        } else {
+            res.json({
+                status : 400,
+                message:'You can only reserve one bike at a time',
+                data : results
+            });
+        }
+        
     }catch(e){
         console.log(e)
         res.sendStatus(500);
