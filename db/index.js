@@ -63,7 +63,7 @@ sinbikedb.users_add = (params)=>{
 sinbikedb.update_user = (params)=>{
     return new Promise((resolve,reject)=>{
         let sql = "UPDATE `users` SET `email` = ?, `phone` = ? WHERE `id` = ?"
-        pool.query(sql,[params.email, params.phone, params.email, params.user_id], (err,results)=>{
+        pool.query(sql,[params.email, params.phone, params.user_id], (err,results)=>{
             if (err){
                 return reject (err);
                 console.log('error')
