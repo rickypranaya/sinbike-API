@@ -55,7 +55,7 @@ sinbikedb.users_add = (params)=>{
 
             } 
             console.log('user inserted')
-            return resolve ('inserted successfuly');
+            return resolve (results);
         })
     })
 };
