@@ -1,8 +1,23 @@
 const express = require("express");
 const exphbs = require("express-handlebars");
+const stripe = require('stripe')('sk_test_51JKRCrH2sQlhwz6CXS6tcWQOr2Ojeqf64zffjLqcGtBG81JKpDBxtRD8OZb5MJUiwuxHsMcKnkpqf4apF2XNs8vH00E2siZUOD')
+const cors = require('cors')
 const db = require("../db")
 const router = express.Router();
 
+router.post("/payment_checkout", async (req,res, next)=>{
+    const total = req.body.total;
+    const token = req.body.token;
+    
+    stripe.charges.create({
+        amount: total,
+        currency: 'sgd',
+        source: token
+    }).then(charge => {
+        res.status(200).send(charge);
+    }).catch(e => console.log(e));
+
+});
 
 router.post("/users_add", async (req,res, next)=>{
     const params = req.body;
