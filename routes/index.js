@@ -9,7 +9,7 @@ router.post("/payment_checkout", async (req,res, next)=>{
     const token = req.body.token;
     
     stripe.charges.create({
-        amount: 50,
+        amount: total,
         currency: 'sgd',
         source: token
     }).then(charge => {
