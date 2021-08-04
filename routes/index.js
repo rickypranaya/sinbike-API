@@ -7,18 +7,14 @@ const router = express.Router();
 router.post("/payment_checkout", async (req,res, next)=>{
     const total = req.body.total;
     const token = req.body.token;
-    res.json({
-        total : total,
-        token :token
-
-    });
-    // stripe.charges.create({
-    //     amount: total,
-    //     currency: 'sgd',
-    //     source: token
-    // }).then(charge => {
-    //     res.status(200).send(charge);
-    // }).catch(e => console.log(e));
+    
+    stripe.charges.create({
+        amount: 50,
+        currency: 'sgd',
+        source: token
+    }).then(charge => {
+        res.status(200).send(charge);
+    }).catch(e => console.log(e));
 
 });
 
