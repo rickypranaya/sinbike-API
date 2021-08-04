@@ -74,6 +74,20 @@ sinbikedb.update_user = (params)=>{
     })
 };
 
+sinbikedb.update_balance = (params)=>{
+    return new Promise((resolve,reject)=>{
+        let sql = "UPDATE `users` SET `balance` = ? WHERE `id` = ?"
+        pool.query(sql,[params.balance, params.user_id], (err,results)=>{
+            if (err){
+                return reject (err);
+                console.log('error')
+            } 
+            console.log('balance updated')
+            return resolve (results);
+        })
+    })
+};
+
 sinbikedb.reserve = (params)=>{
     return new Promise((resolve,reject)=>{
         let sql = "INSERT INTO `reserve` (`user_id`, `bike_id`, `created_at`) VALUES (?)"
