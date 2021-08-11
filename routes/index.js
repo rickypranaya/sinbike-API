@@ -266,6 +266,11 @@ router.post("/reviews", async (req,res, next)=>{
                 message : 'bike is not found',
             });
         } else {
+            for (let x of results) {
+                let getUser = await db.users_one(Number(x.user_id))
+                let name = getUser.first_name +' '+ getUser.last_name;
+                Object.assign(x, {full_name: name})
+              }
 
             res.json({
                 status : 200,
