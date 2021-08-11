@@ -60,6 +60,21 @@ sinbikedb.users_add = (params)=>{
     })
 };
 
+sinbikedb.bike_add = (params)=>{
+    return new Promise((resolve,reject)=>{
+        let sql = "INSERT INTO `bikes` (`ID`, `type`, `latitude`, `longitude`, `address`, `status`, `created_at`) VALUES (?)"
+        pool.query(sql,[[params.ID, params.type, params.latitude, params.longitude, params.address, params.status, params.created_at]], (err,results)=>{
+            if (err){
+                return reject (err);
+                console.log('error')
+
+            } 
+            console.log('bike inserted')
+            return resolve (results);
+        })
+    })
+};
+
 sinbikedb.update_user = (params)=>{
     return new Promise((resolve,reject)=>{
         let sql = "UPDATE `users` SET `email` = ?, `phone` = ? WHERE `id` = ?"
