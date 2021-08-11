@@ -48,6 +48,21 @@ router.post("/bike_add", async (req,res, next)=>{
     }
 });
 
+router.post("/bike_delete", async (req,res, next)=>{
+    const params = req.body;
+
+    try{
+        let results = await db.bike_delete(params);
+        res.json({
+            data : results
+        });
+
+    }catch(e){
+        console.log(e)
+        res.sendStatus(500);
+    }
+});
+
 router.post("/update_user", async (req,res, next)=>{
     const params = req.body;
 

@@ -75,6 +75,21 @@ sinbikedb.bike_add = (params)=>{
     })
 };
 
+sinbikedb.bike_delete = (params)=>{
+    return new Promise((resolve,reject)=>{
+        let sql = "DELETE FROM `bikes` WHERE `ID` = ?"
+        pool.query(sql,[params.ID], (err,results)=>{
+            if (err){
+                return reject (err);
+                console.log('error')
+            } 
+            console.log('user updated')
+            return resolve (results);
+        })
+    })
+};
+
+
 sinbikedb.update_user = (params)=>{
     return new Promise((resolve,reject)=>{
         let sql = "UPDATE `users` SET `email` = ?, `phone` = ? WHERE `id` = ?"
