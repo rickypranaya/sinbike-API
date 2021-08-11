@@ -166,6 +166,17 @@ sinbikedb.bikes = ()=>{
     })
 };
 
+sinbikedb.reviews = ()=>{
+    return new Promise((resolve,reject)=>{
+        pool.query('SELECT * FROM reviews', (err,results)=>{
+            if (err){
+                return reject (err);
+            } 
+            return resolve (results);
+        })
+    })
+};
+
 sinbikedb.get_reserve = (params)=>{
     return new Promise((resolve,reject)=>{
         pool.query('SELECT * FROM reserve where user_id = ?', [params.user_id] ,(err,results)=>{

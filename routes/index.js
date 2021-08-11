@@ -155,7 +155,7 @@ router.post("/login", async (req,res, next)=>{
 router.post("/bike", async (req,res, next)=>{
 
     try{
-        results = await db.bikes();
+        let results = await db.bikes();
 
         if (!results.length){
             res.json({
@@ -181,7 +181,7 @@ router.post("/get_reserve", async (req,res, next)=>{
     const params = req.body;
 
     try{
-        results = await db.get_reserve(params);
+        let results = await db.get_reserve(params);
 
         if (!results.length){
             res.json({
@@ -207,7 +207,7 @@ router.post("/bike_one", async (req,res, next)=>{
     const params = req.body;
 
     try{
-        results = await db.bike_one(params);
+        let results = await db.bike_one(params);
 
         if (!results.length){
             res.json({
@@ -233,7 +233,7 @@ router.post("/reserve_one", async (req,res, next)=>{
     const params = req.body;
 
     try{
-        results = await db.reserve_one(params);
+        let results = await db.reserve_one(params);
 
         if (!results.length){
             res.json({
@@ -246,6 +246,31 @@ router.post("/reserve_one", async (req,res, next)=>{
                 status : 200,
                 data : results,
                 message : 'reservation retrieve success'
+            });
+        }
+        
+    }catch(e){
+        console.log(e)
+        res.sendStatus(500);
+    }
+});
+
+router.post("/reviews", async (req,res, next)=>{
+
+    try{
+        let results = await db.reviews();
+
+        if (!results.length){
+            res.json({
+                status : 400,
+                message : 'bike is not found',
+            });
+        } else {
+
+            res.json({
+                status : 200,
+                data : results,
+                message : 'bike retrieve success'
             });
         }
         
@@ -269,6 +294,8 @@ router.get("/",(req,res, next)=>{
         res.sendStatus(500);
     }
 });
+
+
 
 
 module.exports = router;
