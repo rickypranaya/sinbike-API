@@ -177,6 +177,17 @@ sinbikedb.reviews = ()=>{
     })
 };
 
+sinbikedb.reports = ()=>{
+    return new Promise((resolve,reject)=>{
+        pool.query('SELECT * FROM reports', (err,results)=>{
+            if (err){
+                return reject (err);
+            } 
+            return resolve (results);
+        })
+    })
+};
+
 sinbikedb.get_reserve = (params)=>{
     return new Promise((resolve,reject)=>{
         pool.query('SELECT * FROM reserve where user_id = ?', [params.user_id] ,(err,results)=>{

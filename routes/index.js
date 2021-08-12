@@ -286,6 +286,37 @@ router.post("/reviews", async (req,res, next)=>{
 });
 
 
+router.post("/reports", async (req,res, next)=>{
+
+    try{
+        let results = await db.reports();
+
+        if (!results.length){
+            res.json({
+                status : 400,
+                message : 'bike is not found',
+            });
+        } else {
+            for (let x of results) {
+                let getUser = await db.users_one(Number(x.user_id))
+                let name = getUser.first_name +' '+ getUser.last_name;
+                Object.assign(x, {full_name: name})
+              }
+
+            res.json({
+                status : 200,
+                data : results,
+                message : 'bike retrieve success'
+            });
+        }
+        
+    }catch(e){
+        console.log(e)
+        res.sendStatus(500);
+    }
+});
+
+
 router.get("/",(req,res, next)=>{
 
     try{
