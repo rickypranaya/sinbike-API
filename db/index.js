@@ -45,6 +45,17 @@ sinbikedb.users_one = (id)=>{
     })
 };
 
+sinbikedb.bikes_one = (id)=>{
+    return new Promise((resolve,reject)=>{
+        pool.query('SELECT * FROM bikes where ID = ?',[id], (err,results)=>{
+            if (err){
+                return reject (err);
+            } 
+            return resolve (results[0]);
+        })
+    })
+};
+
 sinbikedb.users_add = (params)=>{
     return new Promise((resolve,reject)=>{
         let sql = "INSERT INTO `users` (`first_name`, `last_name`, `email`, `calling_code`, `phone`, `password`, `created_at`) VALUES (?)"

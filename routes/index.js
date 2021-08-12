@@ -294,13 +294,13 @@ router.post("/reports", async (req,res, next)=>{
         if (!results.length){
             res.json({
                 status : 400,
-                message : 'bike is not found',
+                message : 'report is not found',
             });
         } else {
             for (let x of results) {
-                let getUser = await db.users_one(Number(x.user_id))
-                let name = getUser.first_name +' '+ getUser.last_name;
-                Object.assign(x, {full_name: name})
+                let getBike = await db.bikes_one(Number(x.bike_id))
+                let status = getBike.status;
+                Object.assign(x, {status: status})
               }
 
             res.json({
