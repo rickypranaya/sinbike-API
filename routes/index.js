@@ -34,19 +34,21 @@ router.post("/payment_checkout", async (req,res, next)=>{
         source: token
     }).then(charge => {
         // res.status(200).send(charge);
-        var r = getTransaction(params)
-        res.status(r).send(charge);
+        try{
+            getTransaction(params)
+            res.status(200).send(charge)
+        } catch (e){
+            res.status(500).send(charge)
+        }
     }).catch(e => console.log(e));
 });
 
 const getTransaction = async (params)=>{
     try{
-        let results = await db.transaction_add(params);
-        return 200
-       
-
+        let results = await db.transaction_add(params);       
+        console.log(results)
     }catch(e){
-        return 500
+        console.log(e)
     }
 }
 
