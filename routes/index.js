@@ -23,28 +23,28 @@ router.post("/send_otp", async (req,res, next)=>{
     .then(message => res.status(200).send(otp)).catch(e => res.status(500).send(e));
 });
 
-router.post("/payment_checkout", async (req,res, next)=>{
-    const total = req.body.total;
-    const token = req.body.token;
-    const params = req.body;
+// router.post("/payment_checkout", async (req,res, next)=>{
+//     const total = req.body.total;
+//     const token = req.body.token;
+//     const params = req.body;
     
-    stripe.charges.create({
-        amount: total,
-        currency: 'sgd',
-        source: token
-    }).then(charge => {
-        // res.status(200).send(charge);
-        try{
-            let results = await db.transaction_add(params);
-            res.status(200).send(results);
+//     stripe.charges.create({
+//         amount: total,
+//         currency: 'sgd',
+//         source: token
+//     }).then(charge => {
+//         // res.status(200).send(charge);
+//         try{
+//             let results = await db.transaction_add(params);
+//             res.status(200).send(results);
     
-        }catch(e){
-            console.log(e)
-            res.sendStatus(500);
-        }
-    }).catch(e => console.log(e));
+//         }catch(e){
+//             console.log(e)
+//             res.sendStatus(500);
+//         }
+//     }).catch(e => console.log(e));
 
-});
+// });
 
 router.post("/users_add", async (req,res, next)=>{
     const params = req.body;
