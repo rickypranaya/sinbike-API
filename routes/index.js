@@ -41,7 +41,10 @@ router.post("/payment_checkout", async (req,res, next)=>{
 const getTransaction = async (params)=>{
     try{
         let results = await db.transaction_add(params);
-        res.status(200).send(results);
+        res.json({
+            data : results
+        });
+
 
     }catch(e){
         console.log(e)
