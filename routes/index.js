@@ -4,6 +4,25 @@ const stripe = require('stripe')('sk_test_51JKRCrH2sQlhwz6CXS6tcWQOr2Ojeqf64zffj
 const db = require("../db")
 const router = express.Router();
 
+//twillio
+const accountSid = 'AC28b6a086a95aa3d81f7b0d2f45cef8d9';
+const authToken = '4235ecb8db4c2bfaf50d1453cc27e84c';
+const client = require('twilio')(accountSid, authToken);
+
+
+router.post("/send_otp", async (req,res, next)=>{
+    const params = req.body;
+
+    var otp = (Math.floor(Math.random() * 10000) + 10000).toString().substring(1);
+    client.messages
+    .create({
+        body: '\nyour OTP is '+otp,
+        from: '+15053226608',
+        to: params.phone
+    })
+    .then(message => res.status(200).send(otp)).catch(e => console.log(e));;
+});
+
 router.post("/payment_checkout", async (req,res, next)=>{
     const total = req.body.total;
     const token = req.body.token;
