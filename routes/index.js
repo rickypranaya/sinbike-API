@@ -298,7 +298,7 @@ router.post("/reports", async (req,res, next)=>{
             });
         } else {
             for (let x of results) {
-                let getBike = await db.bikes_one(Number(x.bike_id))
+                let getBike = await db.bikes_one(x.bike_id)
                 let status = getBike.status;
                 Object.assign(x, {status: status})
               }
