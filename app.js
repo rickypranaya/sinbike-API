@@ -18,9 +18,6 @@ app.use(express.urlencoded({extended: true}));
 const apiRouter = require('./routes');
 app.use('/api', apiRouter);
 
-const webRouter = require('./routes/dashboard');
-app.use('/web', webRouter);
-
 
 app.listen(port,()=> console.log('Listening on port ' + port));
 
