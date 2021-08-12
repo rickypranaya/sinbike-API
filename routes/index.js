@@ -45,7 +45,7 @@ const getTransaction = async (params)=>{
 
     }catch(e){
         console.log(e)
-        res.sendStatus(500);
+        res.status(500).send(results);
     }
 }
 
