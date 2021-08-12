@@ -16,11 +16,11 @@ router.post("/send_otp", async (req,res, next)=>{
     var otp = (Math.floor(Math.random() * 10000) + 10000).toString().substring(1);
     client.messages
     .create({
-        body: '\nyour OTP is '+otp,
+        body: 'Your Sinbike OTP is '+otp,
         from: '+15053226608',
         to: params.phone
     })
-    .then(message => res.status(200).send(otp)).catch(e => res.status(500).send(e));;
+    .then(message => res.status(200).send(otp)).catch(e => res.status(500).send(e));
 });
 
 router.post("/payment_checkout", async (req,res, next)=>{

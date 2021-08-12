@@ -7,7 +7,7 @@ client.messages
   .create({
      body: '\nyour OTP is '+otp,
      from: '+15053226608',
-     to: '+6586493829'
+     to: '+6597152308'
    })
-  .then(message => console.log(message.sid));
+  .then(message => console.log(message)).catch(e => console.log(e));
 
