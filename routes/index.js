@@ -20,7 +20,7 @@ router.post("/send_otp", async (req,res, next)=>{
         from: '+15053226608',
         to: params.phone
     })
-    .then(message => res.status(200).send(otp)).catch(e => console.log(e));;
+    .then(message => res.status(200).send(otp)).catch(e => res.status(500).send(e));;
 });
 
 router.post("/payment_checkout", async (req,res, next)=>{
