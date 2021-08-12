@@ -26,13 +26,22 @@ router.post("/send_otp", async (req,res, next)=>{
 router.post("/payment_checkout", async (req,res, next)=>{
     const total = req.body.total;
     const token = req.body.token;
+    const params = req.body;
     
     stripe.charges.create({
         amount: total,
         currency: 'sgd',
         source: token
     }).then(charge => {
-        res.status(200).send(charge);
+        // res.status(200).send(charge);
+        try{
+            let results = await db.transaction_add(params);
+            res.status(200).send(results);
+    
+        }catch(e){
+            console.log(e)
+            res.sendStatus(500);
+        }
     }).catch(e => console.log(e));
 
 });
