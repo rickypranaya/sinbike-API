@@ -78,6 +78,22 @@ router.post("/update_user", async (req,res, next)=>{
     }
 });
 
+router.post("/bike_suspend", async (req,res, next)=>{
+    const params = req.body;
+
+    try{
+        let results = await db.bike_suspend(params);
+        res.json({
+            data : results
+        });
+
+    }catch(e){
+        console.log(e)
+        res.sendStatus(500);
+    }
+});
+
+
 router.post("/update_balance", async (req,res, next)=>{
     const params = req.body;
 

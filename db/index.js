@@ -115,6 +115,20 @@ sinbikedb.update_user = (params)=>{
     })
 };
 
+sinbikedb.bike_suspend = (params)=>{
+    return new Promise((resolve,reject)=>{
+        let sql = "UPDATE `bikes` SET `status` = ? WHERE `ID` = ?"
+        pool.query(sql,['suspended', params.bike_id], (err,results)=>{
+            if (err){
+                return reject (err);
+                console.log('error')
+            } 
+            console.log('user updated')
+            return resolve (results);
+        })
+    })
+};
+
 sinbikedb.update_balance = (params)=>{
     return new Promise((resolve,reject)=>{
         let sql = "UPDATE `users` SET `balance` = ? WHERE `id` = ?"
