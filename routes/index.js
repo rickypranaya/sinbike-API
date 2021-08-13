@@ -150,12 +150,17 @@ router.post("/reserve", async (req,res, next)=>{
         let check = await db.get_reserve(params);
         
         if  (!check.length){
+
+            try{
             let results = await db.reserve(params);
             res.json({
                 status: 200,
                 message: 'success',
                 data : results
             });
+        } catch (e) {
+            res.sendStatus(600)
+        }
     
         } else {
             res.json({
