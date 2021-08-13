@@ -322,11 +322,19 @@ router.post("/reserve_one", async (req,res, next)=>{
             });
         } else {
 
-            res.json({
-                status : 200,
-                data : results,
-                message : 'reservation retrieve success'
-            });
+            try{
+                let bikeData = await db.bike_one(results);
+                Object.assign(results, {location: bikeData})
+
+                res.json({
+                    status: 200,
+                    message: 'success',
+                    data : results
+                });
+
+            } catch (e) {
+                res.status(600).send(e)
+            }
         }
         
     }catch(e){
