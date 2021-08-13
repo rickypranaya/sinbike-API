@@ -216,7 +216,7 @@ sinbikedb.trip_add = (params)=>{
 
 sinbikedb.review_add = (params)=>{
     return new Promise((resolve,reject)=>{
-        let sql = "INSERT INTO `trip` (`bike_id`, `user_id`, `comment`, `review`, `created_at`) VALUES (?)"
+        let sql = "INSERT INTO `reviews` (`bike_id`, `user_id`, `comment`, `review`, `created_at`) VALUES (?)"
         pool.query(sql,[[params.bike_id, params.user_id, params.comment, params.review, params.created_at]], (err,results)=>{
             if (err){
                 return reject (err);
