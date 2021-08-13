@@ -271,34 +271,11 @@ router.post("/get_reserve", async (req,res, next)=>{
                 message : 'reservation is not found',
             });
         } else {
-
-            var min10 = moment().subtract(10, 'minutes');
-            var dbDate = results[0].created_at;
-            var cleanDate = (JSON.stringify(dbDate)).replace("\\",'')
-            // var database = moment(dbDate.replace('Z', ' ').replace('T', ' '))
-
-            // if(min10 <= database){
-            //     res.json({
-            //         status : 200,
-            //         data : results,
-            //         message : 'reservation retrieve success'
-            //     });
-            // } else {
-            //     try{
-                    // let deleteQ = await db.reserve_delete(results[0].id);
-                    res.json({
-                        status : 200,
-                        data : cleanDate,
-                        message : 'reservation expired'
-                    });
-                    // res.sendStatus(200);
-
-            //     }catch(e){
-            //         console.log(e)
-            //         res.sendStatus(400);
-            //     }
-            // }
-            
+            res.json({
+                status : 200,
+                data : results,
+                message : 'reservation expired'
+            });
         }
         
     }catch(e){
