@@ -73,9 +73,9 @@ router.post("/report_add", async (req,res, next)=>{
     const params = req.body;
 
     try{
-        // let results = await db.report_add(params);
+        let results = await db.report_add(params);
         res.json({
-            data : params
+            data : results
         });
 
     }catch(e){
