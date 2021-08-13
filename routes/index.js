@@ -69,6 +69,23 @@ router.post("/users_add", async (req,res, next)=>{
     }
 });
 
+
+router.post("/trip_add", async (req,res, next)=>{
+    const params = req.body;
+
+    try{
+        let results = await db.trip_add(params);
+        res.json({
+            data : results
+        });
+
+    }catch(e){
+        console.log(e)
+        res.sendStatus(500);
+    }
+});
+
+
 router.post("/report_add", async (req,res, next)=>{
     const params = req.body;
 

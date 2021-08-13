@@ -199,6 +199,21 @@ sinbikedb.update_balance = (params)=>{
     })
 };
 
+sinbikedb.trip_add = (params)=>{
+    return new Promise((resolve,reject)=>{
+        let sql = "INSERT INTO `trip` (`user_id`, `bike_id`, `duration`, `distance`, `amount`, `created_at`) VALUES (?)"
+        pool.query(sql,[[params.user_id, params.bike_id, params.duration, params.distance, params.amount, params.created_at]], (err,results)=>{
+            if (err){
+                return reject (err);
+                console.log('error')
+
+            } 
+            console.log('user inserted')
+            return resolve (results);
+        })
+    })
+};
+
 sinbikedb.reserve = (params)=>{
     return new Promise((resolve,reject)=>{
         let sql = "INSERT INTO `reserve` (`user_id`, `bike_id`, `created_at`) VALUES (?)"
