@@ -284,13 +284,14 @@ router.post("/get_reserve", async (req,res, next)=>{
                 });
             } else {
                 try{
-                    let deleteQ = await db.reserve_delete(results[0].id);
-                    res.json({
-                        status : 300,
-                        data : deleteQ,
-                        message : 'reservation expired'
-                    });
-            
+                    // let deleteQ = await db.reserve_delete(results[0].id);
+                    // res.json({
+                    //     status : 300,
+                    //     data : deleteQ,
+                    //     message : 'reservation expired'
+                    // });
+                    res.sendStatus(300);
+
                 }catch(e){
                     console.log(e)
                     res.sendStatus(400);
