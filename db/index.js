@@ -268,7 +268,7 @@ sinbikedb.reserve_one = (params)=>{
             if (err){
                 return reject (err);
             } 
-            return resolve (results[0]);
+            return resolve (results);
         })
     })
 };

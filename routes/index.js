@@ -321,15 +321,15 @@ router.post("/reserve_one", async (req,res, next)=>{
                 message : 'reservation is not found',
             });
         } else {
-
+            var resultData = results[0]
             try{
-                let bikeData = await db.bike_one(results);
-                Object.assign(results, {location: bikeData[0]})
+                let bikeData = await db.bike_one(resultData);
+                Object.assign(resultData, {location: bikeData[0]})
 
                 res.json({
                     status: 200,
                     message: 'success',
-                    data : results
+                    data : resultData
                 });
 
             } catch (e) {
