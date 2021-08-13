@@ -287,7 +287,7 @@ router.post("/get_reserve", async (req,res, next)=>{
                     // let deleteQ = await db.reserve_delete(results[0].id);
                     res.json({
                         status : 200,
-                        data : results,
+                        data : dbDate,
                         message : 'reservation expired'
                     });
                     // res.sendStatus(200);
