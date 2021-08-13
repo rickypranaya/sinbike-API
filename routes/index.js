@@ -272,9 +272,9 @@ router.post("/get_reserve", async (req,res, next)=>{
             });
         } else {
 
-            // var min10 = moment().subtract(10, 'minutes');
-            // var dbDate = results[0].created_at
-            // var database = moment(dbDate.replace('Z', ' ').replace('T', ' '))
+            var min10 = moment().subtract(10, 'minutes');
+            var dbDate = results[0].created_at
+            var database = moment(dbDate.replace('Z', ' ').replace('T', ' '))
 
             // if(min10 <= database){
             //     res.json({
