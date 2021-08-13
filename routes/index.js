@@ -3,6 +3,8 @@ const exphbs = require("express-handlebars");
 const stripe = require('stripe')('sk_test_51JKRCrH2sQlhwz6CXS6tcWQOr2Ojeqf64zffjLqcGtBG81JKpDBxtRD8OZb5MJUiwuxHsMcKnkpqf4apF2XNs8vH00E2siZUOD')
 const db = require("../db")
 const router = express.Router();
+var moment = require('moment');
+
 
 //twillio
 const accountSid = 'AC28b6a086a95aa3d81f7b0d2f45cef8d9';
@@ -270,11 +272,31 @@ router.post("/get_reserve", async (req,res, next)=>{
             });
         } else {
 
-            res.json({
-                status : 200,
-                data : results,
-                message : 'reservation retrieve success'
-            });
+            var min10 = moment().subtract(10, 'minutes');
+            var dbDate = results[0].created_at
+            var database = moment(dbDate.replace('Z', ' ').replace('T', ' '))
+
+            if(min10 <= database){
+                res.json({
+                    status : 200,
+                    data : results,
+                    message : 'reservation retrieve success'
+                });
+            } else {
+                try{
+                    let deleteQ = await db.reserve_delete(results[0].id);
+                    res.json({
+                        status : 300,
+                        data : deleteQ,
+                        message : 'reservation expired'
+                    });
+            
+                }catch(e){
+                    console.log(e)
+                    res.sendStatus(500);
+                }
+            }
+            
         }
         
     }catch(e){

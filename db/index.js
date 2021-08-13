@@ -127,6 +127,20 @@ sinbikedb.bike_delete = (params)=>{
     })
 };
 
+sinbikedb.reserve_delete = (id)=>{
+    return new Promise((resolve,reject)=>{
+        let sql = "DELETE FROM `reserve` WHERE `id` = ?"
+        pool.query(sql,[id], (err,results)=>{
+            if (err){
+                return reject (err);
+                console.log('error')
+            } 
+            console.log('row deleted')
+            return resolve (results);
+        })
+    })
+};
+
 
 sinbikedb.update_user = (params)=>{
     return new Promise((resolve,reject)=>{
