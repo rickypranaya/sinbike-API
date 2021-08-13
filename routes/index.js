@@ -324,7 +324,7 @@ router.post("/reserve_one", async (req,res, next)=>{
 
             try{
                 let bikeData = await db.bike_one(results);
-                Object.assign(results, {location: bikeData})
+                Object.assign(results, {location: bikeData[0]})
 
                 res.json({
                     status: 200,
