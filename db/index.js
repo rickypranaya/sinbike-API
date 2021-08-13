@@ -127,10 +127,10 @@ sinbikedb.bike_delete = (params)=>{
     })
 };
 
-sinbikedb.reserve_delete = (id)=>{
+sinbikedb.reserve_delete = (params)=>{
     return new Promise((resolve,reject)=>{
         let sql = "DELETE FROM `reserve` WHERE `id` = ?"
-        pool.query(sql,[id], (err,results)=>{
+        pool.query(sql,[params.id], (err,results)=>{
             if (err){
                 return reject (err);
                 console.log('error')

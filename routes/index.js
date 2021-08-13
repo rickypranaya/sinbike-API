@@ -103,10 +103,10 @@ router.post("/reserve_delete", async (req,res, next)=>{
     const params = req.body;
 
     try{
-        // let results = await db.reserve_delete(params.id);
+        let results = await db.reserve_delete(params);
         res.json({
             status:200,
-            data : params
+            data : results
         });
 
     }catch(e){
