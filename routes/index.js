@@ -302,7 +302,7 @@ router.post("/get_reserve", async (req,res, next)=>{
         
     }catch(e){
         console.log(e)
-        res.status(505).send(e);
+        res.status(504).send(e);
     }
 });
 
