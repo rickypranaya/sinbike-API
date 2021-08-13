@@ -159,7 +159,7 @@ router.post("/reserve", async (req,res, next)=>{
                 data : results
             });
         } catch (e) {
-            res.sendStatus(600)
+            res.status(600).send(e)
         }
     
         } else {
