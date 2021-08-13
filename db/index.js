@@ -82,6 +82,21 @@ sinbikedb.users_add = (params)=>{
     })
 };
 
+sinbikedb.report_add = (params)=>{
+    return new Promise((resolve,reject)=>{
+        let sql = "INSERT INTO `reports` (`bike_id`, `user_id`, `faults`, `details`, `photos`, `created_at`) VALUES (?)"
+        pool.query(sql,[[params.bike_id, params.user_id, params.faults, params.details, params.photos, params.created_at]], (err,results)=>{
+            if (err){
+                return reject (err);
+                console.log('error')
+
+            } 
+            console.log('user inserted')
+            return resolve (results);
+        })
+    })
+};
+
 sinbikedb.transaction_add = (params)=>{
     return new Promise((resolve,reject)=>{
         let sql = "INSERT INTO `transaction` (`user_id`, `type`, `amount`, `card`, `created_at`) VALUES (?)"

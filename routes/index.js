@@ -69,6 +69,21 @@ router.post("/users_add", async (req,res, next)=>{
     }
 });
 
+router.post("/report_add", async (req,res, next)=>{
+    const params = req.body;
+
+    try{
+        let results = await db.report_add(params);
+        res.json({
+            data : results
+        });
+
+    }catch(e){
+        console.log(e)
+        res.sendStatus(500);
+    }
+});
+
 router.post("/bike_add", async (req,res, next)=>{
     const params = req.body;
 
