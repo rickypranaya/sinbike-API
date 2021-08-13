@@ -273,8 +273,8 @@ router.post("/get_reserve", async (req,res, next)=>{
         } else {
 
             var min10 = moment().subtract(10, 'minutes');
-            var dbDate = results[0].created_at
-            var database = moment(dbDate.replace('Z', ' ').replace('T', ' '))
+            var dbDate = results[0].created_at;
+            // var database = moment(dbDate.replace('Z', ' ').replace('T', ' '))
 
             // if(min10 <= database){
             //     res.json({
@@ -302,7 +302,7 @@ router.post("/get_reserve", async (req,res, next)=>{
         
     }catch(e){
         console.log(e)
-        res.status(504).send(e);
+        res.status(506).send(e);
     }
 });
 
