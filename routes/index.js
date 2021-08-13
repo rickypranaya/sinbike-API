@@ -99,6 +99,22 @@ router.post("/bike_delete", async (req,res, next)=>{
     }
 });
 
+router.post("/reserve_delete", async (req,res, next)=>{
+    const params = req.body;
+
+    try{
+        // let results = await db.reserve_delete(params.id);
+        res.json({
+            status:200,
+            data : params
+        });
+
+    }catch(e){
+        console.log(e)
+        res.sendStatus(500);
+    }
+});
+
 router.post("/update_user", async (req,res, next)=>{
     const params = req.body;
 
