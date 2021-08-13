@@ -296,6 +296,33 @@ router.post("/bike", async (req,res, next)=>{
     }
 });
 
+router.post("/trip", async (req,res, next)=>{
+    const params = req.body;
+
+    try{
+        let results = await db.trip(params);
+
+        if (!results.length){
+            res.json({
+                status : 400,
+                message : 'trip is not found',
+            });
+        } else {
+
+            res.json({
+                status : 200,
+                data : results,
+                message : 'trip retrieve success'
+            });
+        }
+        
+    }catch(e){
+        console.log(e)
+        res.sendStatus(500);
+    }
+});
+
+
 router.post("/transaction", async (req,res, next)=>{
     const params = req.body;
 

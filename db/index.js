@@ -56,6 +56,17 @@ sinbikedb.transaction = (params)=>{
     })
 };
 
+sinbikedb.trip = (params)=>{
+    return new Promise((resolve,reject)=>{
+        pool.query('SELECT * FROM trip where user_id = ?',[params.user_id], (err,results)=>{
+            if (err){
+                return reject (err);
+            } 
+            return resolve (results);
+        })
+    })
+};
+
 sinbikedb.bikes_one = (id)=>{
     return new Promise((resolve,reject)=>{
         pool.query('SELECT * FROM bikes where ID = ?',[id], (err,results)=>{
