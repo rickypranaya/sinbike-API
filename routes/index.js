@@ -75,6 +75,8 @@ router.post("/trip_add", async (req,res, next)=>{
 
     try{
         let results = await db.trip_add(params);
+        let result2 = await db.update_last(params);
+
         res.json({
             data : results
         });
